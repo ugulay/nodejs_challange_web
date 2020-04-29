@@ -5,6 +5,7 @@ import Router from 'vue-router'
 import Master from '../layouts/Master'
 import AdminMaster from '../layouts/Admin/Master'
 
+import Logout from '../views/Admin/Logout.vue'
 import Index from '../views/Index.vue'
 import Hotels from '../views/Hotels.vue'
 import HotelDetail from '../views/HotelDetail.vue'
@@ -29,8 +30,9 @@ const routes = [
     { path: '/hotel/detail/booking-done', name: 'BookComplete', component: BookComplete, meta: { layout: Master } },
 
     //Admin Routes
+    { path: '/logout', name: 'Logout', component: Logout },
     { path: '/admin', name: 'AdminIndex', component: AdminDashboard, meta: { layout: AdminMaster, authRequired: true } },
-    { path: '/admin/login', name: 'Login', component: AdminLogin, meta: { layout: AdminMaster, header: false } },
+    { path: '/admin/login', name: 'Login', component: AdminLogin, meta: { layout: AdminMaster, header: false, footer: false } },
     { path: '/admin/hotels', name: 'AdminHotels', component: AdminHotels, meta: { layout: AdminMaster, authRequired: true } },
     { path: '/admin/books', name: 'AdminBooks', component: AdminBooks, meta: { layout: AdminMaster, authRequired: true } },
     { path: '/admin/books/detail', name: 'AdminBookDetail', component: AdminBookDetail, meta: { layout: AdminMaster, authRequired: true } },
@@ -50,10 +52,10 @@ router.beforeEach((to, from, next) => {
     const loggedIn = localStorage.getItem('user');
 
     if (!loggedIn && to.meta.authRequired) {
-        next({ name: 'Login' });
-    } else {
-        next();
+        return next({ name: 'Login' });
     }
+
+    next();
 
 });
 

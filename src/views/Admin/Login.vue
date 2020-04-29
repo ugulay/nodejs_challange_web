@@ -43,13 +43,16 @@ export default {
     };
   },
   computed: {
-    loggedIn() { 
+    loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     }
   },
   created() {
     if (this.loggedIn) {
       this.$router.push({ name: "AdminIndex" });
+    }
+    if (this.$route.params.msg) {
+      this.message = this.$route.params.msg;
     }
   },
   methods: {

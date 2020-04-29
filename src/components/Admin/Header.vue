@@ -44,6 +44,12 @@
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
+  methods: {
+    logout() {
+      this.$store.dispatch("auth/logout");
+      this.$router.push({ name: "Login" });
+    }
+  }
 };
 </script>

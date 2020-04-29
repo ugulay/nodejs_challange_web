@@ -7,7 +7,13 @@
       <div class="card-body">
         <form name="form" @submit.prevent="addHotel">
           <div class="form-group">
-            <input type="text" class="form-control" v-model="hotel.title" placeholder="Hotel Title" />
+            <input
+              type="text"
+              class="form-control"
+              v-model="hotel.title"
+              placeholder="Hotel Title"
+              required="required"
+            />
           </div>
           <div class="form-group">
             <textarea
@@ -15,6 +21,7 @@
               class="form-control"
               v-model="hotel.description"
               placeholder="Description"
+              required="required"
             ></textarea>
           </div>
           <div class="form-group">
@@ -23,6 +30,7 @@
               class="form-control"
               v-model="hotel.location"
               placeholder="Hotel Location"
+              required="required"
             />
           </div>
           <div class="form-group text-right">
